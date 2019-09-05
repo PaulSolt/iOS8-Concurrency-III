@@ -58,7 +58,7 @@ queue.addOperation(heartRate)
 //queue.addOperation(getWeather)
 //queue.addOperation(downloadJSON)
 
-queue.addOperations([downloadJSON, processJSON, downloadImageFromJSON, getWeather], waitUntilFinished: false)
+queue.addOperations([downloadJSON, processJSON, downloadImageFromJSON, getWeather], waitUntilFinished: true)
 
 print("Finished")
 let heartRateString = String(bytes: heartRate.data!, encoding: .utf8)!

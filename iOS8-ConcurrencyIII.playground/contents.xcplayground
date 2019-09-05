@@ -4,5 +4,6 @@
         <page name='Basic Queues'/>
         <page name='Atomic'/>
         <page name='NSOperation'/>
+        <page name='Dispatch Group'/>
     </pages>
 </playground>
