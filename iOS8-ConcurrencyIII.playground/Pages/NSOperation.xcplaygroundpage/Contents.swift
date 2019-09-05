@@ -58,7 +58,14 @@ queue.addOperation(heartRate)
 //queue.addOperation(getWeather)
 //queue.addOperation(downloadJSON)
 
+// If we don't waitUntilFinished, the heartRate data will be nil
+// waiting is a blocking call
 queue.addOperations([downloadJSON, processJSON, downloadImageFromJSON, getWeather], waitUntilFinished: true)
+
+// When you cancel an operation, it will remove any extra from the queue, but it doesn't just
+// magically stop the operations. There is a isCanceled method to check in your "work" algorithm, so you can
+// stop work early mid-operation.
+//queue.cancelAllOperations()
 
 print("Finished")
 let heartRateString = String(bytes: heartRate.data!, encoding: .utf8)!
