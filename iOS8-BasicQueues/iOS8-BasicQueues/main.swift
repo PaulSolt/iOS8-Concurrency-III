@@ -22,13 +22,13 @@ let queue = DispatchQueue(label: "MyBackgroundSerialQueue") // does 1 thing at a
 //
 //print("3. I'm finished")
 
-
+var sharedResource = 20
 let concurrentQueue = DispatchQueue(label: "MyBackgroundConcurrentQueue", attributes: [.concurrent])
 
 print("1. I'm on the main thread")
 concurrentQueue.async { // what happens if this is sync?
     print("2.1 Downloading images in the background")
-    
+    sharedResource += 1
     usleep(1_000)
     print("2.2 Downloading images in the background")
 }
@@ -36,7 +36,7 @@ concurrentQueue.async { // what happens if this is sync?
 print("3. I'm on the main thread")
 concurrentQueue.async { // what happens if this is sync?
     print("4.1 Downloading images in the background")
-    
+    sharedResource += 1     // Thread Sanitizer: Swift access race detected!
     usleep(1_000)
     print("4.2 Downloading images in the background")
 }
